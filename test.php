@@ -40,27 +40,27 @@
 <head>
 <script type = "text/javascript">
     function form_check(){
-        var flag = 0;
+        var flag = bloolean();
         // 貴社名の入力チェック
         if(document.form.company_name.value == ""){
-            flag = 1;
+             flag = true;
         }//ご担当者名の入力チェック
         else if(document.form.name.value == ""){
-            flag = 1;
+             flag = true;
         }//ふりがなの入力チェック
         else if(document.form.furigana.value == ""){
-            flag = 1;
+             flag = true;
         }//メールアドレスの入力チェック
         else if(document.form.mail.value == ""){
-            flag = 1;
+             flag = true;
         }//電話番号の入力チェック
         else if(document.form.tel.value == ""){
-            flag = 1;
+             flag = true;
         }//お問い合わせ内容の入力チェック
         else if(document.form.item.value == ""){
-            flag = 1;
+             flag = true;
         }
-        if(flag){
+        if(flag == true){
             window.alert("必須項目を入力してください。");
             return false;//送信を中止
         }
