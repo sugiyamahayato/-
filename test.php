@@ -38,15 +38,46 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<script type = "text/javascript">
+    function form_check(){
+        var flag = 0;
+        // 貴社名の入力チェック
+        if(document.form.company_name.value == ""){
+            flag = 1;
+        }//ご担当者名の入力チェック
+        else if(document.form.name.value == ""){
+            flag = 1;
+        }//ふりがなの入力チェック
+        else if(document.form.furigana.value == ""){
+            flag = 1;
+        }//メールアドレスの入力チェック
+        else if(document.form.mail.value == ""){
+            flag = 1;
+        }//電話番号の入力チェック
+        else if(document.form.tel.value == ""){
+            flag = 1;
+        }//お問い合わせ内容の入力チェック
+        else if(document.form.item.value == ""){
+            flag = 1;
+        }
+        if(flag){
+            window.alert("必須項目を入力してください。");
+            return false;//送信を中止
+        }
+        else{
+            return true;//送信を実行
+        }
+    } 
+</script>    
 <meta charset="UTF-8">
 <title>お問い合わせフォーム</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">   
 </head>
-<body>   
+<body> 
 <div><h1>Contact</h1></div>
 <div><h2>お問い合わせ</h2></div>
 <div>
-    <form action="test.php" method="post" name="form">
+    <form action="test.php" method="post" name="form" onsubmit = "return form_check();">
         <h1 class="contact-title">お問い合わせ 内容入力</h1>
         <p>ご希望のお問い合わせ内容を入力の上、下記のフォームから、お気軽にお問い合わせください。</p>
         <div>
