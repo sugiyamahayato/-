@@ -40,7 +40,7 @@
 <head>
 <script type = "text/javascript">
     function form_check(){
-        var flag = bloolean();
+        var flag = false;
         // 貴社名の入力チェック
         if(document.form.company_name.value == ""){
              flag = true;
