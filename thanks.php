@@ -6,8 +6,6 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div><h1>Company Name</h1></div>
-<div><h2>お問い合わせ</h2> </div>
 <div>
         <div>
         <h1>お問い合わせ 送信完了</h1>

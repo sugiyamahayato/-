@@ -16,7 +16,31 @@
         $content  = $data["content"];
     // }
 
+    
+    $res = "";
+    //フォームから格納されたかを判定
+    if(isset($data['company_name']) && isset($data['name']) && isset($data['furigana']) && isset($data['mail']) && isset($data['tel']) && isset($data['sex'])){
+        $USER = 'root'; //ユーザー名
+        $PW = '';  //パスワード
+        $dnsinfo = "mysql:dbname=toiawase_form;host=localhost;charset=utf8";
 
+        try{ 
+            $pdo = new PDO($dnsinfo, $USER, $PW);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO otoiawase VALUE(?,?,?,?,?,?)";
+            $stmt = $pdo->prepare($sql);
+            $array = array($data['company_name'], $data['name'], $data['furigana'], $data['mail'], $data['tel'], $data['sex']);
+            var_dump($array);
+            $res = $stmt->execute($array);
+        }catch(Exception $e){
+            //echo 'テスト';exit;
+            $res = $e->getMessage();
+            //exit;
+            $pdo = null;
+            
+        }
+
+    }    
     // 送信ボタンが押されたら
     if (isset($_POST["submit"])) {
 
@@ -91,8 +115,6 @@ EOM;
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div><h1>Company Name</h1></div>
-<div><h2>お問い合わせ</h2></div>
 <div>
     <form action="confirm.php" method="post">
             <input type="hidden" name="company_name" value="<?php echo $company_name; ?>">
@@ -142,5 +164,6 @@ EOM;
         <button type="submit" name="submit">送信する</button>
     </form>
 </div>
+<?php echo $res;?>
 </body>
 </html>
