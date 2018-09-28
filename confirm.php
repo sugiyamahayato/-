@@ -1,11 +1,8 @@
 <?php 
  session_start();
-     // フォームのボタンが押されたら
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // フォームから送信されたデータを各変数に格納
+    
         //submitで送られて来たデータを$dataに格納
         $data=$_SESSION['submit'];
-        //$data=$_SESSION['join'];
         $company_name = $data["company_name"];
         $name = $data["name"];
         $furigana = $data["furigana"];
@@ -14,12 +11,9 @@
         $sex = $data["sex"];
         $item = $data["item"];
         $content  = $data["content"];
-    // }
-
+//if(isset($data['company_name']) && isset($data['name']) && isset($data['furigana']) && isset($data['mail']) && isset($data['tel']) && isset($data['sex']));//{
     
-    $res = "";
-    //フォームから格納されたかを判定
-    if(isset($data['company_name']) && isset($data['name']) && isset($data['furigana']) && isset($data['mail']) && isset($data['tel']) && isset($data['sex'])){
+   /* $res = "";
         $USER = 'root'; //ユーザー名
         $PW = '';  //パスワード
         $dnsinfo = "mysql:dbname=toiawase_form;host=localhost;charset=utf8";
@@ -27,20 +21,17 @@
         try{ 
             $pdo = new PDO($dnsinfo, $USER, $PW);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO otoiawase VALUE(?,?,?,?,?,?)";
+            $sql = "INSERT INTO otoiawase(Compant_name,Name,Furigana,Mail,Tel,Sex) VALUE(?,?,?,?,?,?)";
             $stmt = $pdo->prepare($sql);
             $array = array($data['company_name'], $data['name'], $data['furigana'], $data['mail'], $data['tel'], $data['sex']);
-            var_dump($array);
             $res = $stmt->execute($array);
         }catch(Exception $e){
-            //echo 'テスト';exit;
             $res = $e->getMessage();
-            //exit;
             $pdo = null;
             
-        }
+        }*/
 
-    }    
+    //}    
     // 送信ボタンが押されたら
     if (isset($_POST["submit"])) {
 
@@ -116,7 +107,7 @@ EOM;
 </head>
 <body>
 <div>
-    <form action="confirm.php" method="post">
+    <form action="thanks.php" method="post">
             <input type="hidden" name="company_name" value="<?php echo $company_name; ?>">
             <input type="hidden" name="name" value="<?php echo $name; ?>">
             <input type="hidden" name="furigana" value="<?php echo $furigana; ?>">
@@ -164,6 +155,5 @@ EOM;
         <button type="submit" name="submit">送信する</button>
     </form>
 </div>
-<?php echo $res;?>
 </body>
-</html>
+<html>
