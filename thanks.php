@@ -10,10 +10,21 @@
 
         try{ 
             $pdo = new PDO($dnsinfo, $USER, $PW);
-            $sql = "INSERT INTO otoiawase(CompnayName,Name,Furigana,Mali,Tel,Sex) VALUE(?,?,?,?,?,?)";
-            $stmt = $pdo->prepare($sql);
-            $array = array($data['company_name'], $data['name'], $data['furigana'], $data['mail'], $data['tel'], $data['sex']);
-            $res = $stmt->execute($array);
+            $sql = 'INSERT INTO otoiawase(CompanyName, Name, Furigana, Mali, Tel, Sex)
+                    VALUE(;company_name, ;name, ;furigana, ;mail, ;tel, ;sex,)';
+            $stt = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $stt->execute(array(';company_name' => $data['company_name'],
+                                ';name' => $data['name'],
+                                ';furigana' => $data['furigana'],
+                                ';mail' => $data['mail'],
+                                ';tel' => $data['tel'],
+                                ';sex' => $data['sex']));
+                                var_dump(';company_name');
+            
+            //$sql = "INSERT INTO otoiawase(CompnayName,Name,Furigana,Mali,Tel,Sex) VALUE(?,?,?,?,?,?)";
+            //$stmt = $pdo->prepare($sql);
+            //$array = array($data['company_name'], $data['name'], $data['furigana'], $data['mail'], $data['tel'], $data['sex']);
+            //$res = $stmt->execute($array);
         }catch(Exception $e){
             $res = $e->getMessage();
         }

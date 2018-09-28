@@ -11,27 +11,7 @@
         $sex = $data["sex"];
         $item = $data["item"];
         $content  = $data["content"];
-//if(isset($data['company_name']) && isset($data['name']) && isset($data['furigana']) && isset($data['mail']) && isset($data['tel']) && isset($data['sex']));//{
-    
-   /* $res = "";
-        $USER = 'root'; //ユーザー名
-        $PW = '';  //パスワード
-        $dnsinfo = "mysql:dbname=toiawase_form;host=localhost;charset=utf8";
 
-        try{ 
-            $pdo = new PDO($dnsinfo, $USER, $PW);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO otoiawase(Compant_name,Name,Furigana,Mail,Tel,Sex) VALUE(?,?,?,?,?,?)";
-            $stmt = $pdo->prepare($sql);
-            $array = array($data['company_name'], $data['name'], $data['furigana'], $data['mail'], $data['tel'], $data['sex']);
-            $res = $stmt->execute($array);
-        }catch(Exception $e){
-            $res = $e->getMessage();
-            $pdo = null;
-            
-        }*/
-
-    //}    
     // 送信ボタンが押されたら
     if (isset($_POST["submit"])) {
 
