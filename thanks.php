@@ -10,21 +10,17 @@
 
         try{ 
             $pdo = new PDO($dnsinfo, $USER, $PW);
-            $sql = 'INSERT INTO otoiawase(CompanyName, Name, Furigana, Mali, Tel, Sex)
-                    VALUE(;company_name, ;name, ;furigana, ;mail, ;tel, ;sex,)';
-            $stt = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-            $stt->execute(array(';company_name' => $data['company_name'],
-                                ';name' => $data['name'],
-                                ';furigana' => $data['furigana'],
-                                ';mail' => $data['mail'],
-                                ';tel' => $data['tel'],
-                                ';sex' => $data['sex']));
-                                var_dump(';company_name');
-            
-            //$sql = "INSERT INTO otoiawase(CompnayName,Name,Furigana,Mali,Tel,Sex) VALUE(?,?,?,?,?,?)";
-            //$stmt = $pdo->prepare($sql);
-            //$array = array($data['company_name'], $data['name'], $data['furigana'], $data['mail'], $data['tel'], $data['sex']);
-            //$res = $stmt->execute($array);
+            $stmt = $pdo -> prepare("INSERT INTO otoiawase(CompanyName, Name, Furigana, Mali, Tel, Sex) 
+                                    VALUE (:CompanyName, :Name, :Furigana, :Mali, :Tel, :Sex)");
+            $stmt->bindValue(':CompanyName',$data['company_name'], PDO::PARAM_STR);
+            $stmt->bindValue (':Name', $data['name'], PDO::PARAM_STR);
+            $stmt->bindValue(':Furigana', $data['furigana'], PDO::PARAM_STR);
+            $stmt->bindvalue(':Mali', $data['mail'], PDO::PARAM_STR);
+            $stmt->bindvalue(':Tel', $data['tel'], PDO::PARAM_STR);
+            $stmt->bindvalue(':Sex', $data['sex'], PDO::PARAM_STR);
+
+            $stmt->execute();
+                                  
         }catch(Exception $e){
             $res = $e->getMessage();
         }
