@@ -7,10 +7,7 @@ session_start();
             isset($data['furigana']) && 
             isset($data['mail']) && 
             isset($data['tel']) && 
-            isset($data['sex'])){ 
-        if ($data == ''){
-            throw new Exception('エラー');
-        }       
+            isset($data['sex'])){      
 
         $res = "";
         $USER = 'root'; //ユーザー名
@@ -19,6 +16,7 @@ session_start();
 
         try{ 
             $pdo = new PDO($dnsinfo, $USER, $PW);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt = $pdo -> prepare("INSERT INTO otoiawase(CompanyName, Name, Furigana, Mali, Tel, Sex) 
                                     VALUE (:CompanyName, :Name, :Furigana, :Mali, :Tel, :Sex)");
             $stmt->bindValue(':CompanyName',$data['company_name'], PDO::PARAM_STR);
@@ -29,15 +27,12 @@ session_start();
             $stmt->bindvalue(':Sex', $data['sex'], PDO::PARAM_STR);
 
             $stmt->execute();
+                           
+            }catch(PDOException $e){
+                echo $e->getMessage();
 
-            if ($stmt == ''){
-                throw new Exception('エラーがあります');
-            }
-                                  
-        }catch(Exception $e){
-            $res = $e->getMessage();
-        }
     }
+}
 
 ?>
 <!DOCTYPE html>
@@ -63,5 +58,3 @@ session_start();
 </div>
 </body>
 <html>
-
-
