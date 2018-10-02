@@ -1,7 +1,16 @@
 <?php
- session_start();
+session_start();
+
          $data=$_SESSION['submit'];
-        if(isset($data['company_name']) && isset($data['name']) && isset($data['furigana']) && isset($data['mail']) && isset($data['tel']) && isset($data['sex'])){ 
+        if(isset($data['company_name']) && 
+            isset($data['name']) &&    
+            isset($data['furigana']) && 
+            isset($data['mail']) && 
+            isset($data['tel']) && 
+            isset($data['sex'])){ 
+        if ($data == ''){
+            throw new Exception('エラー');
+        }       
 
         $res = "";
         $USER = 'root'; //ユーザー名
@@ -20,6 +29,10 @@
             $stmt->bindvalue(':Sex', $data['sex'], PDO::PARAM_STR);
 
             $stmt->execute();
+
+            if ($stmt == ''){
+                throw new Exception('エラーがあります');
+            }
                                   
         }catch(Exception $e){
             $res = $e->getMessage();
