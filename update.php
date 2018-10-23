@@ -1,21 +1,4 @@
 <?php
-session_start();
-var_dump($_SESSION);
-
-$data=$_SESSION;
-
-if (isset($data['ID']) &&
-    isset($data['company_name']) &&
-    isset($data['name']) &&
-    isset($data['furigana']) &&
-    isset($data['mail']) &&
-    isset($data['tel']) &&
-    isset($data['sex']) &&
-    isset($data['item']) )
-//データの引継ぎのタイミングでSESSION
-//SESSIONのデータ確認、データがあればSESSIONのデータを＄ROWに代入
-//SESSIONの削除、有効期限かコード内で削除
-
 header("Content-type: text/html; charset=utf-8");
 
     $dsn = "mysql:host=localhost; dbname=otoiawase_form; charset=utf8";
@@ -24,13 +7,8 @@ header("Content-type: text/html; charset=utf-8");
     //GETを取得
     $ID=$_GET['id'];
     if($_GET['id'] === ''){
-        $errors[] = 'エラー';
+         echo 'エラー';
     }
-    
-    //GETに値が入っていれば、DB接続、入っていなければエラーまたはselect.phpに戻す
-    //更新ボタン押下でupdate2.phpに画面遷移
-    //POSTでデータを送る
-
 
 try{
     //データベース接続

@@ -55,10 +55,12 @@ foreach($rows as $row){
     <td><?php echo $row['tel']; ?></td>
     <td><?php echo $row['sex']; ?></td>
     <td><?php echo $row['item']; ?></td>
-    <td>        
+    <td> 
+        <!-- 更新画面へ遷移 -->
         <a href="./update.php?id=<?php echo $row['ID']?>">変更</a>
     </td>
     <td>
+        <!-- 削除ボタン -->
         <a href="./delete.php?id=<?php echo $row['ID']?>">削除</a>
     </td>
 </tr>

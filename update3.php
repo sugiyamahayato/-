@@ -1,7 +1,9 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
 
+// getで送られてきた値を取得
 $ID = $_GET['id'];
+// getの中身をチェック、中身が空ならエラー
 if (empty($_GET['id'])){
     echo 'エラー';
 }
@@ -14,7 +16,7 @@ $pw='';
 try{
     $pdo = new PDO($dsn, $USER, $pw);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    // SELECT文を使ってDBのデータを取得
     $stmt=$pdo->prepare("SELECT * FROM otoiawase WHERE ID=?");
 
     //各カラムのプレスホルダに値をバインド
