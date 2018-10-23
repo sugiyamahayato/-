@@ -33,9 +33,11 @@
             <h1 class="contact-title">お問い合わせ 内容確認</h1>
             <p>お問い合わせ内容はこちらで宜しいでしょうか？<br>よろしければ「送信する」ボタンを押して下さい。</p>
             <div>
+          
                 <div>
                     <label>貴社名</label>
                     <p><?php echo $company_name; ?></p>
+                </div>
                 <div>
                     <label>ご担当者名</label>
                     <p><?php echo $name; ?></p>
